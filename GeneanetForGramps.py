@@ -135,18 +135,18 @@ def format_ca(date):
     # If ca for an about date, replace with vers (for now)
     if date[0:2] == "ca":
         date = _("about")+date[2:]
-    return(date)
+    return (date)
 
 def format_year(date):
     """
     Remove potential empty month/day coming from Gramps (00)
     """
     if not date:
-        return(date)
+        return (date)
     if (date[-6:] == "-00-00"):
-        return(date[0:-6])
+        return (date[0:-6])
     else:
-        return(date)
+        return (date)
 
 def format_iso(date_tuple):
     """
@@ -171,7 +171,7 @@ def format_noniso(date_tuple):
     Format an non-iso tuple into an iso date
     """
     day, month, year = date_tuple
-    return(format_iso(year, month, day))
+    return (format_iso(year, month, day))
 
 def convert_date(datetab):
     ''' Convert the Geneanet date format for birth/death/married lines
@@ -182,17 +182,17 @@ def convert_date(datetab):
         print(_("datetab received:"),datetab)
 
     if len(datetab) == 0:
-        return(None)
+        return (None)
     idx = 0
     if datetab[0] == 'en':
         # avoid a potential month
         if datetab[1].isalpha():
-            return(datetab[2][0:4])
+            return (datetab[2][0:4])
         # avoid a potential , after the year
         elif datetab[1].isnumeric():
-            return(datetab[1][0:4])
+            return (datetab[1][0:4])
     if (datetab[0][0:2] == _("about")[0:2] or datetab[0][0:2] ==  _("after")[0:2] or datetab[0][0:2] ==  _("before")[0:2]) and (len(datetab) == 2):
-        return(datetab[0]+" "+datetab[1][0:4])
+        return (datetab[0]+" "+datetab[1][0:4])
     # In case of french language remove the 'le' prefix
     if datetab[0] == 'le':
         idx = 1
@@ -201,7 +201,7 @@ def convert_date(datetab):
         datetab[idx] = "1"
     bd1 = datetab[idx]+" "+datetab[idx+1]+" "+datetab[idx+2][0:4]
     bd2 = datetime.strptime(bd1, "%d %B %Y")
-    return(bd2.strftime("%Y-%m-%d"))
+    return (bd2.strftime("%Y-%m-%d"))
 
 # GUI Part
 class GeneanetForGrampsOptions(MenuToolOptions):
@@ -475,7 +475,7 @@ class GBase:
             pl = event.get_place_handle()
         except:
             place = Place()
-            return(place)
+            return (place)
 
         if pl:
             try:
@@ -487,7 +487,7 @@ class GBase:
         else:
             if placename == None:
                 place = Place()
-                return(place)
+                return (place)
             keep = None
             # Check whether our place already exists
             for handle in db.get_place_handles():
@@ -506,7 +506,7 @@ class GBase:
                 if verbosity >= 2:
                     print(_("Reuse existing Place:"), placename)
                 place = keep
-        return(place)
+        return (place)
 
     def get_or_create_event(self,gobj,attr,tran):
         '''
@@ -645,7 +645,7 @@ class GBase:
             print(_("EventType: %d")%(evttype))
 
         if not self:
-            return(None)
+            return (None)
 
         if evttype == EventType.BIRTH:
             ref = self.grampsp.get_birth_ref()
@@ -662,7 +662,7 @@ class GBase:
             ref = eventref
         else:
             print(_("Didn't find a known EventType: "),evttype)
-            return(None)
+            return (None)
 
         if ref:
             if verbosity >= 4:
@@ -671,7 +671,7 @@ class GBase:
                 event = db.get_event_from_handle(ref.ref)
             except:
                 print(_("Didn't find a known ref for this ref date: "),ref)
-                return(None)
+                return (None)
             if event:
                 if verbosity >= 4:
                     print(_("Event")+":",event)
@@ -697,11 +697,11 @@ class GBase:
                     pref = ""
                 if verbosity >= 3:
                     print(_("Returned date: ")+pref+ret)
-                return(pref+ret)
+                return (pref+ret)
             else:
-                return(None)
+                return (None)
         else:
-            return(None)
+            return (None)
 
 
 class GFamily(GBase):
@@ -789,9 +789,9 @@ class GFamily(GBase):
                 print(_("Check mother ids: ")+mgid+_(" vs ")+smgid)
             if self.father and father and father.gramps_id == self.father.gid \
                 and self.mother and mother and mother.gramps_id == self.mother.gid:
-                return(f)
+                return (f)
             #TODO: What about preexisting families not created in this run ?
-        return(None)
+        return (None)
 
     def from_geneanet(self):
         '''
@@ -1122,7 +1122,7 @@ class GPerson(GBase):
         if verbosity >= 3:
             print(_("Purl:"),purl)
         if not purl:
-            return()
+            return ()
         try:
             if verbosity >= 1:
                 print("-----------------------------------------------------------")
@@ -1654,7 +1654,7 @@ class GPerson(GBase):
                     spouse.family.append(f)
                 ret.append(f)
             i = i + 1
-        return(ret)
+        return (ret)
 
     def recurse_parents(self,level):
         '''
@@ -1763,7 +1763,7 @@ def geneanet_to_gramps(p, level, gid, url):
                 db.close()
                 sys.exit(_("Do not continue without force"))
             else:
-                return(None)
+                return (None)
 
         # Fix potential empty dates
         if p.g_birthdate == "":
@@ -1785,14 +1785,14 @@ def geneanet_to_gramps(p, level, gid, url):
                 sys.exit(_("Do not continue without force"))
             else:
                 print(_("Please fix the person in gramps"))
-                return(None)
+                return (None)
 
     # Copy from Geneanet into Gramps and commit
     p.to_gramps()
     if GUIMODE:
         progress.set_header(_("Adding Gramps Person %s %s (%s | %s)")%(p.firstname,p.lastname,p.birthdate,p.deathdate))
         progress.step()
-    return(p)
+    return (p)
 
 def g2gaction(gid,purl):
     global progress
