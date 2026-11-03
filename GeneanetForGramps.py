@@ -570,7 +570,7 @@ class GBase:
 
         if self.__dict__[attr+'date'] \
             or self.__dict__[attr+'place'] \
-            or self.__dict__[attr+'placecode'] :
+            or self.__dict__[attr+'placecode']:
             # Get or create the event date
             date = event.get_date_object()
             if self.__dict__[attr+'date']:
@@ -617,7 +617,7 @@ class GBase:
             db.commit_event(event, tran)
 
             if self.__dict__[attr+'place'] \
-                or self.__dict__[attr+'placecode'] :
+                or self.__dict__[attr+'placecode']:
                 if self.__dict__[attr+'place']:
                     placename = self.__dict__[attr+'place']
                 else:
