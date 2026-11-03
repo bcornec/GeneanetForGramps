@@ -79,13 +79,13 @@ TIMEOUT = 5
 
 # TODO: Is it useful ?
 LANGUAGES = {
-    'cs' : 'Czech', 'da' : 'Danish', 'nl' : 'Dutch',
-    'en' : 'English', 'eo' : 'Esperanto', 'fi' : 'Finnish',
-    'fr' : 'French', 'de' : 'German', 'hu' : 'Hungarian',
-    'it' : 'Italian', 'lt' : 'Latvian', 'lv' : 'Lithuanian',
-    'no' : 'Norwegian', 'po' : 'Polish', 'pt' : 'Portuguese',
-    'ro' : 'Romanian', 'sk' : 'Slovak', 'es' : 'Spanish',
-    'sv' : 'Swedish', 'ru' : 'Russian',
+    'cs': 'Czech', 'da': 'Danish', 'nl': 'Dutch',
+    'en': 'English', 'eo': 'Esperanto', 'fi': 'Finnish',
+    'fr': 'French', 'de': 'German', 'hu': 'Hungarian',
+    'it': 'Italian', 'lt': 'Latvian', 'lv': 'Lithuanian',
+    'no': 'Norwegian', 'po': 'Polish', 'pt': 'Portuguese',
+    'ro': 'Romanian', 'sk': 'Slovak', 'es': 'Spanish',
+    'sv': 'Swedish', 'ru': 'Russian',
     }
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|GeneanetForGramps')
