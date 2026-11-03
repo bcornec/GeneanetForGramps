@@ -1436,7 +1436,7 @@ class GPerson(GBase):
             if bd == self.g_birthdate or dd == self.g_deathdate:
                 self.gid = p.gramps_id
                 if verbosity >= 2:
-                    print(_("Found a Gramps Person: ")+self.g_firstname+' '+self.g_lastname+ " ("+self.gid+")")
+                    print(_("Found a Gramps Person: ") + self.g_firstname + ' ' + self.g_lastname + " ("+self.gid+")")
                 # Found it we can exit
                 break
             else:
