@@ -189,7 +189,7 @@ def convert_date(datetab):
         # avoid a potential , after the year
         elif datetab[1].isnumeric():
             return (datetab[1][0:4])
-    if (datetab[0][0:2] == _("about")[0:2] or datetab[0][0:2] ==  _("after")[0:2] or datetab[0][0:2] ==  _("before")[0:2]) and (len(datetab) == 2):
+    if (datetab[0][0:2] == _("about")[0:2] or datetab[0][0:2] == _("after")[0:2] or datetab[0][0:2] == _("before")[0:2]) and (len(datetab) == 2):
         return (datetab[0]+" "+datetab[1][0:4])
     # In case of french language remove the 'le' prefix
     if datetab[0] == 'le':
