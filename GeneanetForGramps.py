@@ -154,11 +154,11 @@ def format_iso(date_tuple):
     # Format with a leading 0 if needed
     month = str(month).zfill(2)
     day = str(day).zfill(2)
-    if year == None or year == 0:
+    if year is None or year == 0:
        iso_date = ''
-    elif month == None or month == 0:
+    elif month is None or month == 0:
        iso_date = str(year)
-    elif day == None or day == 0:
+    elif day is None or day == 0:
         iso_date = '%s-%s' % (year, month)
     else:
         iso_date = '%s-%s-%s' % (year, month, day)
@@ -483,7 +483,7 @@ class GBase:
             except:
                 place = Place()
         else:
-            if placename == None:
+            if placename is None:
                 place = Place()
                 return (place)
             keep = None
@@ -496,7 +496,7 @@ class GBase:
                 if str(explace) == str(placename):
                     keep = pl
                     break
-            if keep == None:
+            if keep is None:
                 if verbosity >= 2:
                     print(_("Create Place:"), placename)
                 place = Place()
@@ -853,7 +853,7 @@ class GFamily(GBase):
                     print(_("Found an existing Gramps family ")+self.family.gramps_id)
                 self.gid = self.family.gramps_id
             # And if we haven't found it, create it in gramps
-            if self.family == None:
+            if self.family is None:
                 self.create_grampsf()
 
         if self.family:
@@ -881,7 +881,7 @@ class GFamily(GBase):
         self.smartcopy()
         with DbTxn("Geneanet import", db) as tran:
             # When it's not the case create the family
-            if self.family == None:
+            if self.family is None:
                 self.family = Family()
                 db.add_family(self.family, tran)
 
@@ -1528,7 +1528,7 @@ class GPerson(GBase):
             # This supposes that Geneanet data are already present in GPerson
             self.find_grampsp()
             # And if we haven't found it, create it in gramps
-            if self.grampsp == None:
+            if self.grampsp is None:
                 self.create_grampsp()
 
         if self.grampsp.gender:
@@ -1840,7 +1840,7 @@ def main():
     parser.add_argument("searchedperson", type=str, nargs='?', help=_("Url of the person to search in Geneanet"))
     args = parser.parse_args()
 
-    if args.searchedperson == None:
+    if args.searchedperson is None:
         #purl = 'https://gw.geneanet.org/agnesy?lang=fr&pz=hugo+mathis&nz=renard&p=marie+sebastienne&n=helgouach'
         #purl = 'https://gw.geneanet.org/agnesy?lang=fr&n=queffelec&oc=17&p=marie+anne'
         print(_("Please provide a person to search for"))
@@ -1857,7 +1857,7 @@ def main():
     LEVEL = args.level
 
     # TODO: do a backup before opening and remove fixed path
-    if gname == None:
+    if gname is None:
         #gname = "Test import"
         # To be searched in ~/.gramps/recent-files-gramps.xml
         #gname = "/users/bruno/.gramps/grampsdb/5ec17554"
@@ -1875,7 +1875,7 @@ def main():
         sys.exit(-1)
 
     gid = args.id
-    if gid == None:
+    if gid is None:
         gid = "0000"
     gid = "I"+gid
 
